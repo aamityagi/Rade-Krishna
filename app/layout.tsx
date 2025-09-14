@@ -2,7 +2,7 @@
 
 import { CssVarsProvider } from "@mui/joy/styles";
 import { extendTheme } from "@mui/joy/styles";
-
+import { Analytics } from "@vercel/analytics/next";
 const theme = extendTheme({
   // Optional: customizations
 });
