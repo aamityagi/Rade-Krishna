@@ -1,11 +1,22 @@
-// app/layout.tsx
-import { ReactNode } from "react";
-import "../styles/globals.css";
+"use client";
 
-export default function RootLayout({ children }: { children: ReactNode }) {
+import { CssVarsProvider } from "@mui/joy/styles";
+import { extendTheme } from "@mui/joy/styles";
+
+const theme = extendTheme({
+  // Optional: customizations
+});
+
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
     <html lang="en">
-      <body className="bg-white text-black">{children}</body>
+      <body>
+        <CssVarsProvider theme={theme}>{children}</CssVarsProvider>
+      </body>
     </html>
   );
 }

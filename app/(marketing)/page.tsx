@@ -1,6 +1,6 @@
 "use client";
 
-import { Button, Card, CardContent, Typography, Sheet } from "@mui/joy";
+import { Button, Card, CardContent, Typography } from "@mui/joy";
 import Link from "next/link";
 
 export default function MarketingPage() {
@@ -40,15 +40,10 @@ export default function MarketingPage() {
         id="home"
         className="flex flex-col items-center justify-center text-center bg-gradient-to-r from-blue-400 to-purple-500 text-white py-32 px-4"
       >
-        <Typography
-          level="h1"
-          fontSize="4xl"
-          fontWeight="bold"
-          className="mb-4"
-        >
+        <Typography level="h1" className="mb-4 font-bold">
           Welcome to Radha-Krishna SaaS
         </Typography>
-        <Typography fontSize="lg" className="mb-6 max-w-xl">
+        <Typography level="body-lg" className="mb-6 max-w-xl">
           The all-in-one platform for Keywords, Content, Ecommerce, Website
           Builder, and Social Media automation.
         </Typography>
@@ -59,13 +54,7 @@ export default function MarketingPage() {
 
       {/* ---------- APPLICATION / MODULES ---------- */}
       <section id="modules" className="py-20 bg-gray-50 px-4">
-        <Typography
-          level="h2"
-          fontSize="3xl"
-          fontWeight="bold"
-          textAlign="center"
-          className="mb-12"
-        >
+        <Typography level="h2" className="mb-12 text-center font-bold">
           Our Applications
         </Typography>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
@@ -82,10 +71,10 @@ export default function MarketingPage() {
               className="hover:shadow-lg transition-shadow"
             >
               <CardContent>
-                <Typography level="h3" fontWeight="bold" className="mb-2">
+                <Typography level="title-md" className="mb-2 font-bold">
                   {module}
                 </Typography>
-                <Typography>
+                <Typography level="body-sm">
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
                   non risus.
                 </Typography>
@@ -97,18 +86,12 @@ export default function MarketingPage() {
 
       {/* ---------- ABOUT SECTION ---------- */}
       <section id="about" className="py-20 px-4 bg-white">
-        <Typography
-          level="h2"
-          fontSize="3xl"
-          fontWeight="bold"
-          textAlign="center"
-          className="mb-6"
-        >
+        <Typography level="h2" className="mb-6 text-center font-bold">
           About Radha-Krishna
         </Typography>
         <Typography
-          textAlign="center"
-          className="max-w-3xl mx-auto text-gray-700"
+          level="body-md"
+          className="max-w-3xl mx-auto text-center text-gray-700"
         >
           Radha-Krishna is a scalable SaaS platform built with Next.js, Tailwind
           CSS, MUI, and Supabase. It helps businesses, solopreneurs, and social
@@ -124,8 +107,10 @@ export default function MarketingPage() {
       >
         <div className="max-w-6xl mx-auto flex flex-col md:flex-row justify-between gap-6">
           <div>
-            <Typography fontWeight="bold">Radha-Krishna SaaS</Typography>
-            <Typography>© 2025 All rights reserved.</Typography>
+            <Typography level="title-md" className="font-bold">
+              Radha-Krishna SaaS
+            </Typography>
+            <Typography level="body-sm">© 2025 All rights reserved.</Typography>
           </div>
           <div className="flex flex-col gap-2">
             <a href="#" className="hover:text-blue-400">

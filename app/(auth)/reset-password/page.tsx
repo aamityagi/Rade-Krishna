@@ -1,61 +1,42 @@
 "use client";
+export const dynamic = "force-dynamic";
 
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
+import { Typography, Button, Input, Sheet } from "@mui/joy";
 import { supabase } from "../../../lib/supabaseClient";
-import { Input, Button, Typography, Sheet } from "@mui/joy";
 
 export default function ResetPasswordPage() {
   const router = useRouter();
-  const [accessToken, setAccessToken] = useState<string | null>(null);
-
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
-  const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+  const [message, setMessage] = useState("");
 
-  // Read access_token from URL hash
   useEffect(() => {
-    const hash = window.location.hash; // #access_token=...&type=recovery
-    const params = new URLSearchParams(hash.replace("#", ""));
-    const token = params.get("access_token");
-    if (token) setAccessToken(token);
-    else
-      setError("Invalid or expired link. Please request a new password reset.");
+    supabase.auth.onAuthStateChange((_event, session) => {
+      if (!session) {
+        // token handled automatically by Supabase
+      }
+    });
   }, []);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError("");
-
-    if (!password || !confirmPassword) {
-      setError("Please fill all fields");
-      return;
-    }
+    setMessage("");
 
     if (password !== confirmPassword) {
       setError("Passwords do not match");
       return;
     }
 
-    if (!accessToken) {
-      setError("Invalid or expired link. Please request a new password reset.");
-      return;
-    }
+    const { error } = await supabase.auth.updateUser({ password });
 
-    setLoading(true);
-
-    // Update password via Supabase
-    const { error: updateError } = await supabase.auth.updateUser({
-      password,
-    });
-
-    setLoading(false);
-
-    if (updateError) {
-      setError(updateError.message);
+    if (error) {
+      setError(error.message);
     } else {
-      alert("Password updated successfully! Please login.");
+      alert("Password updated. Please login.");
       router.push("/login");
     }
   };
@@ -63,8 +44,8 @@ export default function ResetPasswordPage() {
   return (
     <div className="flex items-center justify-center h-screen bg-gray-50">
       <Sheet variant="outlined" className="p-8 w-full max-w-md rounded shadow">
-        <Typography level="h5" className="mb-4 text-center font-bold">
-          Set New Password
+        <Typography level="h4" className="mb-4 text-center font-bold">
+          Reset Password
         </Typography>
         <form onSubmit={handleSubmit} className="flex flex-col gap-4">
           <Input
@@ -82,12 +63,8 @@ export default function ResetPasswordPage() {
             required
           />
           {error && <Typography color="danger">{error}</Typography>}
-          <Button type="submit" disabled={loading}>
-            {loading ? "Updating..." : "Update Password"}
-          </Button>
-          <Button variant="outlined" onClick={() => router.push("/login")}>
-            Back to Login
-          </Button>
+          {message && <Typography color="success">{message}</Typography>}
+          <Button type="submit">Update Password</Button>
         </form>
       </Sheet>
     </div>

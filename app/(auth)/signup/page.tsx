@@ -101,9 +101,7 @@ export default function RegisterPage() {
           {/* Logo & Welcome */}
           <div className="flex flex-col items-center mb-6">
             <img src="/logo.svg" alt="Logo" className="h-14 w-14 mb-2" />
-            <Typography level="h4" fontWeight="bold">
-              Create Your Account
-            </Typography>
+            <Typography fontWeight="bold">Create Your Account</Typography>
             <Typography textColor="neutral.500">
               Sign up to get started
             </Typography>

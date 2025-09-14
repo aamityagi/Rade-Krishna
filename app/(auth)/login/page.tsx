@@ -1,9 +1,10 @@
 "use client";
+export const dynamic = "force-dynamic";
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import { Typography, Button, Input, Sheet } from "@mui/joy";
 import { supabase } from "../../../lib/supabaseClient";
-import { Input, Button } from "@mui/joy";
 
 export default function LoginPage() {
   const [email, setEmail] = useState("");
@@ -13,43 +14,45 @@ export default function LoginPage() {
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
-    const { data, error } = await supabase.auth.signInWithPassword({
+    setError("");
+
+    const { error } = await supabase.auth.signInWithPassword({
       email,
       password,
     });
 
     if (error) {
       setError(error.message);
-    } else if (data.session) {
-      router.push("/dashboard"); // redirect after login
+    } else {
+      router.push("/dashboard");
     }
   };
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-gray-100">
-      <form onSubmit={handleLogin} className="p-8 bg-white shadow rounded w-96">
-        <h2 className="text-2xl mb-4">Login</h2>
-        <Input
-          type="email"
-          placeholder="Email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          className="mb-4"
-          required
-        />
-        <Input
-          type="password"
-          placeholder="Password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          className="mb-4"
-          required
-        />
-        {error && <p className="text-red-500 mb-2">{error}</p>}
-        <Button type="submit" fullWidth>
+    <div className="flex items-center justify-center h-screen bg-gray-50">
+      <Sheet variant="outlined" className="p-8 w-full max-w-md rounded shadow">
+        <Typography level="h4" className="mb-4 text-center font-bold">
           Login
-        </Button>
-      </form>
+        </Typography>
+        <form onSubmit={handleLogin} className="flex flex-col gap-4">
+          <Input
+            type="email"
+            placeholder="Email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+          />
+          <Input
+            type="password"
+            placeholder="Password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+          />
+          {error && <Typography color="danger">{error}</Typography>}
+          <Button type="submit">Sign In</Button>
+        </form>
+      </Sheet>
     </div>
   );
 }

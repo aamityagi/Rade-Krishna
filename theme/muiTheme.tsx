@@ -1,38 +1,20 @@
 "use client";
 
-import { CssVarsProvider, extendTheme } from "@mui/joy/styles";
+import { createTheme } from "@mui/material/styles";
 
-const theme = extendTheme({
-  colorSchemes: {
-    light: {
-      palette: {
-        primary: {
-          solidBg: "#6750A4", // M3 Primary
-          solidHoverBg: "#5B3D9B",
-          solidActiveBg: "#381E72",
-        },
-        secondary: {
-          solidBg: "#625B71",
-          solidHoverBg: "#4D445F",
-          solidActiveBg: "#332D41",
-        },
-        neutral: {
-          solidBg: "#FFFBFE",
-        },
-      },
-    },
+const theme = createTheme({
+  palette: {
+    mode: "light",
+    primary: { main: "#6750A4" },
+    secondary: { main: "#625B71" },
   },
-  radius: {
-    sm: "8px",
-    md: "12px",
-    lg: "24px",
+  shape: {
+    borderRadius: 8, // fixes radius errors
+  },
+  typography: {
+    fontSize: 14, // fixes fontSize null error
+    fontFamily: "Roboto, Arial, sans-serif",
   },
 });
 
-export default function ThemeProvider({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
-  return <CssVarsProvider theme={theme}>{children}</CssVarsProvider>;
-}
+export default theme;
