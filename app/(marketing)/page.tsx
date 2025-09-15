@@ -1,130 +1,87 @@
 "use client";
 
-import { Button, Card, CardContent, Typography } from "@mui/joy";
+import { Button } from "@mui/joy";
 import Link from "next/link";
 
 export default function MarketingPage() {
   return (
-    <div className="flex flex-col min-h-screen">
-      {/* ---------- HEADER ---------- */}
-      <header className="flex items-center justify-between px-6 py-4 bg-white shadow-md">
-        <div className="flex items-center gap-4">
-          <img src="/logo.png" alt="Radha-Krishna Logo" className="h-10 w-10" />
-          <nav className="hidden md:flex gap-6">
-            <a href="#home" className="hover:text-blue-600">
-              Home
-            </a>
-            <a href="#about" className="hover:text-blue-600">
-              About
-            </a>
-            <a href="#modules" className="hover:text-blue-600">
-              Application
-            </a>
-            <a href="#contact" className="hover:text-blue-600">
-              Contact
-            </a>
-          </nav>
-        </div>
-        <div className="flex gap-4">
-          <Link href="/login">
-            <Button variant="outlined">Login</Button>
-          </Link>
+    <main className="flex flex-col items-center justify-center px-6 py-12">
+      {/* Hero Section */}
+      <section className="text-center max-w-3xl space-y-6 py-16">
+        <h1 className="text-4xl md:text-6xl font-bold text-gray-900">
+          Radha-Krishna <span className="text-blue-600">AI SaaS</span>
+        </h1>
+        <p className="text-lg md:text-xl text-gray-600">
+          All-in-one platform for Keyword Research, Content Creation, Ecommerce
+          Insights, Website Builder, and Social Media Auto-Posting.
+        </p>
+        <div className="flex gap-4 justify-center">
           <Link href="/signup">
-            <Button variant="solid">Sign Up</Button>
+            <Button size="lg" color="primary">
+              Get Started Free
+            </Button>
+          </Link>
+          <Link href="/pricing">
+            <Button size="lg">View Pricing</Button>
           </Link>
         </div>
-      </header>
-
-      {/* ---------- HERO SECTION ---------- */}
-      <section
-        id="home"
-        className="flex flex-col items-center justify-center text-center bg-gradient-to-r from-blue-400 to-purple-500 text-white py-32 px-4"
-      >
-        <Typography level="h1" className="mb-4 font-bold">
-          Welcome to Radha-Krishna SaaS
-        </Typography>
-        <Typography level="body-lg" className="mb-6 max-w-xl">
-          The all-in-one platform for Keywords, Content, Ecommerce, Website
-          Builder, and Social Media automation.
-        </Typography>
-        <Button variant="solid" size="lg">
-          Get Started
-        </Button>
       </section>
 
-      {/* ---------- APPLICATION / MODULES ---------- */}
-      <section id="modules" className="py-20 bg-gray-50 px-4">
-        <Typography level="h2" className="mb-12 text-center font-bold">
-          Our Applications
-        </Typography>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
-          {[
-            "Keyword Finder",
-            "Content Creator",
-            "Ecommerce Keyword Finder",
-            "Website Builder",
-            "Social Media Auto-Posting",
-          ].map((module) => (
-            <Card
-              key={module}
-              variant="outlined"
-              className="hover:shadow-lg transition-shadow"
-            >
-              <CardContent>
-                <Typography level="title-md" className="mb-2 font-bold">
-                  {module}
-                </Typography>
-                <Typography level="body-sm">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
-                  non risus.
-                </Typography>
-              </CardContent>
-            </Card>
-          ))}
-        </div>
-      </section>
-
-      {/* ---------- ABOUT SECTION ---------- */}
-      <section id="about" className="py-20 px-4 bg-white">
-        <Typography level="h2" className="mb-6 text-center font-bold">
-          About Radha-Krishna
-        </Typography>
-        <Typography
-          level="body-md"
-          className="max-w-3xl mx-auto text-center text-gray-700"
-        >
-          Radha-Krishna is a scalable SaaS platform built with Next.js, Tailwind
-          CSS, MUI, and Supabase. It helps businesses, solopreneurs, and social
-          media creators to streamline content creation, keyword research, and
-          website building, all from a single dashboard.
-        </Typography>
-      </section>
-
-      {/* ---------- FOOTER ---------- */}
-      <footer
-        id="contact"
-        className="bg-gray-900 text-white py-10 px-4 mt-auto"
-      >
-        <div className="max-w-6xl mx-auto flex flex-col md:flex-row justify-between gap-6">
-          <div>
-            <Typography level="title-md" className="font-bold">
-              Radha-Krishna SaaS
-            </Typography>
-            <Typography level="body-sm">© 2025 All rights reserved.</Typography>
+      {/* Features Section */}
+      <section className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl py-16">
+        {[
+          {
+            title: "Keyword Finder",
+            desc: "Discover high-traffic keywords for websites, ecommerce, and social media.",
+          },
+          {
+            title: "Content Creator",
+            desc: "AI-powered tools to generate blogs, captions, and social posts instantly.",
+          },
+          {
+            title: "Ecommerce Keywords",
+            desc: "Optimize for Amazon, Flipkart, and other marketplaces.",
+          },
+          {
+            title: "Website Builder",
+            desc: "Prebuilt UI templates to launch your blog or store in minutes.",
+          },
+          {
+            title: "Auto-Posting",
+            desc: "Schedule and automate social media posting across platforms.",
+          },
+          {
+            title: "Free Tier Friendly",
+            desc: "Optimized for Supabase + Vercel free tiers with scalable design.",
+          },
+        ].map((feature, i) => (
+          <div
+            key={i}
+            className="p-6 rounded-2xl border bg-white shadow-sm hover:shadow-md transition"
+          >
+            <h3 className="text-xl font-semibold text-gray-800">
+              {feature.title}
+            </h3>
+            <p className="mt-2 text-gray-600">{feature.desc}</p>
           </div>
-          <div className="flex flex-col gap-2">
-            <a href="#" className="hover:text-blue-400">
-              Privacy Policy
-            </a>
-            <a href="#" className="hover:text-blue-400">
-              Terms of Service
-            </a>
-            <a href="#" className="hover:text-blue-400">
-              Contact Us
-            </a>
-          </div>
-        </div>
-      </footer>
-    </div>
+        ))}
+      </section>
+
+      {/* CTA Section */}
+      <section className="text-center py-20 max-w-2xl">
+        <h2 className="text-3xl md:text-4xl font-bold text-gray-900">
+          Start Growing with Radha-Krishna AI
+        </h2>
+        <p className="mt-4 text-lg text-gray-600">
+          Join early adopters using AI to scale their websites, ecommerce
+          stores, and content strategies.
+        </p>
+        <Link href="/signup">
+          <Button size="lg" className="mt-6" color="primary">
+            Try Free Now
+          </Button>
+        </Link>
+      </section>
+    </main>
   );
 }

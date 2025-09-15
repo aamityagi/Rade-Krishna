@@ -4,7 +4,6 @@ import { ReactNode, useEffect, useState, useRef } from "react";
 import { useRouter } from "next/navigation";
 import { supabase } from "../../lib/supabaseClient";
 import DashboardSidebar from "../../components/DashboardSidebar";
-
 export default function DashboardLayout({ children }: { children: ReactNode }) {
   const router = useRouter();
   const [loading, setLoading] = useState(true);
@@ -63,36 +62,9 @@ export default function DashboardLayout({ children }: { children: ReactNode }) {
 
   return (
     <div className="flex min-h-screen">
-      <DashboardSidebar />
       <div className="flex-1 flex flex-col">
-        {/* Header */}
-        <header className="flex justify-between items-center p-4 bg-white shadow">
-          <h1 className="text-xl font-bold">Radha-Krishna</h1>
-          <div className="relative" ref={dropdownRef}>
-            <button
-              className="flex items-center gap-2 rounded-full border p-2"
-              onClick={() => setDropdownOpen(!dropdownOpen)}
-            >
-              <span>Profile</span>
-            </button>
-            {dropdownOpen && (
-              <div className="absolute right-0 mt-2 w-48 bg-white border shadow rounded">
-                <button className="w-full text-left px-4 py-2 hover:bg-gray-100">
-                  Upgrade Plan
-                </button>
-                <button className="w-full text-left px-4 py-2 hover:bg-gray-100">
-                  Profile
-                </button>
-                <button
-                  className="w-full text-left px-4 py-2 hover:bg-gray-100"
-                  onClick={handleLogout}
-                >
-                  Logout
-                </button>
-              </div>
-            )}
-          </div>
-        </header>
+        {/** Sidebar */}
+        <DashboardSidebar />
 
         {/* Main Content */}
         <main className="flex-1 p-8 bg-gray-50">{children}</main>

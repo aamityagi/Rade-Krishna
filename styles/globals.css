@@ -1,25 +1,94 @@
-/* Tailwind base */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* Optional: Global body styles */
+/* 1. Custom Colors (based on Radha Krishna Vyom palette) */
+:root {
+  --color-indigo: #3b2e8f; /* Primary Deep Indigo */
+  --color-gold: #ffd700; /* Primary CTA / Highlights */
+  --color-sky: #aedff7; /* Light background / Cards */
+  --color-cream: #fff3e0; /* Section background */
+  --color-teal: #00796b; /* Secondary / Info buttons */
+  --color-dark: #333333; /* Main text */
+  --color-gray: #666666; /* Secondary text */
+  --color-light-gray: #f5f5f5; /* Page background */
+}
+
+/* 2. Header / Sidebar */
+.header,
+.sidebar {
+  background-color: var(--color-indigo);
+  color: white;
+  backdrop-filter: blur(
+    8px
+  ); /* optional glassy effect for semi-transparent header/sidebar */
+  -webkit-backdrop-filter: blur(8px);
+}
+
+/* 3. Buttons */
+.btn-primary {
+  @apply text-white font-semibold rounded-lg px-6 py-2 shadow-lg;
+  background-color: var(--color-gold);
+  transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+  @apply scale-105 shadow-xl;
+  background-color: #ffc107; /* slightly lighter gold on hover */
+}
+
+.btn-secondary {
+  @apply border-2 border-teal-600 text-teal-600 font-semibold rounded-lg px-6 py-2;
+  background-color: transparent;
+  transition: all 0.3s ease;
+}
+
+.btn-secondary:hover {
+  @apply bg-teal-600 text-white scale-105;
+}
+
+/* 4. Slider / Glassy effect */
+.slider {
+  @apply w-full h-2 rounded-full;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+}
+
+.slider::-webkit-slider-thumb {
+  @apply w-6 h-6 rounded-full shadow-lg;
+  background-color: var(--color-gold);
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.slider::-webkit-slider-thumb:hover {
+  transform: scale(1.2);
+}
+
+/* 5. Card Glassy effect */
+.card {
+  @apply p-6 rounded-xl shadow-xl;
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* 6. Typography */
+h1,
+h2,
+h3 {
+  color: var(--color-dark);
+}
+
+p,
+span {
+  color: var(--color-gray);
+}
+
+/* 7. Page Background */
 body {
-  font-family: "Inter", sans-serif;
-  background-color: #f8f9fa; /* light background */
-  margin: 0;
-  padding: 0;
-}
-
-/* Colors for Tailwind + MUI integration */
-.text-primary {
-  color: #6750a4; /* Material 3 primary */
-}
-
-.text-secondary {
-  color: #625b71; /* Material 3 secondary */
-}
-
-.bg-background {
-  background-color: #fffbfe; /* neutral background */
+  background-color: var(--color-light-gray);
+  font-family: "Roboto", sans-serif; /* M3 default font */
 }

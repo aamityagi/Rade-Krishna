@@ -19,7 +19,6 @@ export default function DashboardPage() {
 
   return (
     <div className="flex min-h-screen">
-      <DashboardSidebar onSelect={setSelectedModule} />
       <div className="flex-1 p-4 bg-gray-50">{renderModule()}</div>
     </div>
   );

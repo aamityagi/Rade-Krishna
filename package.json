@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "gen-tree": "node scripts/generateReadmeTree.js"
   },
   "dependencies": {
     "@emotion/react": "^11.14.0",
@@ -33,7 +34,8 @@
     "eslint": "^9",
     "eslint-config-next": "15.5.3",
     "postcss": "^8.5.6",
-    "tailwindcss": "^4.1.13",
+    "tailwindcss": "^3.4.17",
+    "tree-node-cli": "^1.6.0",
     "typescript": "^5"
   }
 }
